@@ -60,7 +60,7 @@ function iniciar(min, max, aleatorio) {
     rl.question(`Digite um número entre ${min} e ${max}: `, (input) => {
 
         let userInput = parseInt(input)
-        if (isNaN(userInput) || userInput > min || userInput < max) {
+        if (isNaN(userInput) || userInput < min || userInput > max) {
             console.log("Você não digitou um número!")
             botao(fase);
 
