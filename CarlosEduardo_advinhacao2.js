@@ -6,10 +6,10 @@ const rl = readline.createInterface({
 
 function random(i) {
     const aleatorio = Math.floor(Math.random() * i)
-    return opcoes[aleatorio];
+    return aleatorio;
 }
 
-const opcoes = ["Pedra", "Papel", "Tesoura"]
+const opcoes = ["Pedra", "Papel", "Tesoura", "Lagarto", "Spock"]
 
 let escolhaComputador = [];
 let escolhaUser = [];
@@ -17,29 +17,37 @@ let resultado = "";
 
 console.log("***SEJA BEM VINDO AO JOGO - PEDRA, PAPEL E TESOURA DO LIONS-DEV***")
 
-rl.question("Pedra, Papel, tesoooura!\nDigite sua escolha [0]Pedra [1]Papel [2]Tesoura\nR: ", (input) => {
+function sortear() {
+    rl.question("Pedra, Papel, tesoura, lagarto e Spock!!!!\nDigite sua escolha [0]Pedra [1]Papel [2]Tesoura [3]Lagarto [4]Spock\nDigite [SAIR] para encerrar.\nR: ", (input) => {
 
-    if (input === "0" || input === "1" || input === "2") {
+        if (input === "sair" || input === "SAIR") {
+            console.log("Até a próxima!")
+            rl.close()
+        } else {
 
-        let inputNumber = parseInt(input);
+            if (input === "0" || input === "1" || input === "2" || input === "3" || input === "4") {
 
-        escolhaUser.push(opcoes[input])
+                let inputNumber = parseInt(input);
 
-        let computadorSorteador = random(opcoes.length)
+                escolhaUser.push(opcoes[input])
 
-        escolhaComputador.push(computadorSorteador)
+                let computadorSorteador = random(opcoes.length)
 
-        console.log(`O usuário tirou ${escolhaUser} e o adversário tirou ${escolhaComputador}`)
+                escolhaComputador.push(computadorSorteador)
 
-        comparacao(inputNumber, computadorSorteador)
+                console.log(`O usuário tirou ${escolhaUser} e o adversário tirou ${opcoes[escolhaComputador]}`)
 
-        console.log(escolhaUser)
-        console.log(computadorSorteador)
+                comparacao(inputNumber, computadorSorteador)
 
-    }
+            } else {
+                console.log("Não entendi, por favor, digite um número válido!")
+                sortear()
+            }
 
-})
+        }
 
+    })
+}
 
 
 function comparacao(user, computer) {
@@ -47,33 +55,97 @@ function comparacao(user, computer) {
     switch (true) {
 
         case (user === computer):
-            console.log("***EMPATE***")
-            rl.close()
+            console.log("***EMPATE***\n")
+            escolhaUser = []
+            escolhaComputador = []
+            sortear()
             break;
 
-        case (user === '0' && computer === '2'):
-            console.log("Você venceu! Parabéns!")
-            rl.close()
+        case (user === 0 && computer === 2):
+            console.log("Você **venceu**! Parabéns!\n")
+            escolhaUser = []
+            escolhaComputador = []
+            sortear()
             break;
 
-        case (user === '1' && computer === '0'):
-            console.log("Você venceu! Parabéns!")
-            rl.close()
+        case (user === 0 && computer === 3):
+            console.log("Você **venceu**! Parabéns!\n")
+            escolhaUser = []
+            escolhaComputador = []
+            sortear()
             break;
 
-        case (user === '2' && computer === '1'):
-            console.log("Você venceu! Parabéns!")
-            rl.close()
+        case (user === 1 && computer === 0):
+            console.log("Você **venceu**! Parabéns!\n")
+            escolhaUser = []
+            escolhaComputador = []
+            sortear()
             break;
+
+        case (user === 1 && computer === 4):
+            console.log("Você **venceu**! Parabéns!\n")
+            escolhaUser = []
+            escolhaComputador = []
+            sortear()
+            break;
+
+        case (user === 2 && computer === 1):
+            console.log("Você **venceu**! Parabéns!\n")
+            escolhaUser = []
+            escolhaComputador = []
+            sortear()
+            break;
+
+        case (user === 2 && computer === 3):
+            console.log("Você **venceu**! Parabéns!\n")
+            escolhaUser = []
+            escolhaComputador = []
+            sortear()
+            break;
+
+        case (user === 3 && computer === 4):
+            console.log("Você **venceu**! Parabéns!\n")
+            escolhaUser = []
+            escolhaComputador = []
+            sortear()
+            break;
+
+        case (user === 3 && computer === 1):
+            console.log("Você **venceu**! Parabéns!\n")
+            escolhaUser = []
+            escolhaComputador = []
+            sortear()
+            break;
+
+
+        case (user === 4 && computer === 0):
+            console.log("Você **venceu**! Parabéns!\n")
+            escolhaUser = []
+            escolhaComputador = []
+            sortear()
+            break;
+
+
+        case (user === 4 && computer === 0):
+            console.log("Você **venceu**! Parabéns!\n")
+            escolhaUser = []
+            escolhaComputador = []
+            sortear()
+            break;
+
 
         default:
-            console.log("Você perdeu!")
-            rl.close()
+            console.log("Você **perdeu**!\n")
+            escolhaUser = []
+            escolhaComputador = []
+            sortear()
             break;
 
     }
 
 }
+
+sortear()
 
 
 
